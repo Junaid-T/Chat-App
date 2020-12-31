@@ -1,0 +1,22 @@
+.Header {
+  background-color: rgb(59, 50, 50);
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  height: 10%;
+  align-items: center;
+}
+
+.Header button {
+  color: white;
+  background-color: orange;
+  border: none;
+  height: 40%;
+  border-radius: 20%;
+  outline: none;
+  height: 50%;
+}
+.Header div {
+  height: 40%;
+  border: 1px solid white;
+}

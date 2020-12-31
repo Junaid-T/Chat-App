@@ -1,0 +1,49 @@
+.MessageContainer {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  margin: 2% auto 0;
+  min-height: 15%;
+}
+
+.MessageSender {
+  width: 60%;
+  background-color: rgb(196, 171, 171);
+  float: right;
+  height: 100%;
+  position: relative;
+  border-radius: 10%;
+  padding-left: 1%;
+}
+
+.MessageReciever {
+  width: 60%;
+  background-color: rgb(112, 59, 59);
+  color: rgb(247, 233, 233);
+  float: left;
+  height: 100%;
+  position: relative;
+  border-radius: 10%;
+  padding-left: 1%;
+}
+
+.Name {
+  float: left;
+  font-size: small;
+}
+.Message {
+  width: 100%;
+  float: left;
+  text-align: left;
+  font-size: large;
+  position: relative;
+  top: 2%;
+}
+
+.Time {
+  font-size: small;
+  float: left;
+  position: absolute;
+  top: 75%;
+}

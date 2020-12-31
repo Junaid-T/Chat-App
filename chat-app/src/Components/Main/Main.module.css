@@ -1,0 +1,16 @@
+.ContentContainer {
+  background-color: teal;
+  height: 80%;
+  width: 100%;
+  overflow: scroll;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+}
+
+.ContentContainer::-webkit-scrollbar {
+  display: none;
+}
