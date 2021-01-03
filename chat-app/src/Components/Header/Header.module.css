@@ -5,18 +5,60 @@
   color: white;
   height: 10%;
   align-items: center;
+  padding: 0 2%;
 }
 
 .Header button {
   color: white;
-  background-color: orange;
+  background-color: var(--secondary-color);
   border: none;
   height: 40%;
   border-radius: 20%;
   outline: none;
   height: 50%;
+  cursor: pointer;
 }
-.Header div {
+
+.Header button:hover {
+  background-color: var(--main-color);
+}
+.Header button:active {
+  background-color: var(--secondary-color);
+}
+.Header button:focus {
+  background-color: var(--secondary-color);
+}
+
+.Header h3 {
   height: 40%;
-  border: 1px solid white;
+}
+
+@media only screen and (min-width: 700px) {
+  .Header {
+    justify-content: flex-start;
+    padding-left: 0;
+  }
+  .Header h3 {
+    margin-left: 5%;
+    width: 50%;
+    height: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .Header button {
+    height: 100%;
+    width: 20%;
+    border-radius: 0%;
+    background-color: var(--main-color);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+  .ParticipantButton {
+    display: none;
+  }
 }

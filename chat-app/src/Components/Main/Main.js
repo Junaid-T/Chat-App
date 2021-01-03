@@ -1,8 +1,9 @@
-import React, { Fragment, useEffect } from "react";
+import React from "react";
 import classes from "./Main.module.css";
 import Message from "../Message/Message";
 import Input from "../Input/Input";
 import axios from "axios";
+import Participants from "../Participants/Participants";
 
 const currentUser = "user_123";
 
@@ -24,10 +25,11 @@ const Main = (props) => {
   }
 
   return (
-    <Fragment>
+    <div className={classes.Container}>
       <ol className={classes.ContentContainer}>{content}</ol>
+      <Participants />
       <Input socket={props.socket} />
-    </Fragment>
+    </div>
   );
 };
 

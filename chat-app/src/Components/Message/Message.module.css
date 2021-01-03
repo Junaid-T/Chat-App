@@ -5,6 +5,7 @@
   width: 100%;
   margin: 2% auto 0;
   min-height: 15%;
+  overflow: hidden;
 }
 
 .MessageSender {
@@ -46,4 +47,11 @@
   float: left;
   position: absolute;
   top: 75%;
+}
+
+@media only screen and (min-width: 500px) {
+  .MessageReciever,
+  .MessageSender {
+    width: 50%;
+  }
 }

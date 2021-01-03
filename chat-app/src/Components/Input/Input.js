@@ -7,7 +7,7 @@ const Input = (props) => {
     let content = e.target.parentElement.querySelector("input").value;
 
     props.socket.emit("message", {
-      user: 123,
+      user: "user_123",
       time: 1,
       message: content,
       room: "Test Room",
