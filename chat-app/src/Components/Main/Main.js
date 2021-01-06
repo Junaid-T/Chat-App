@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import classes from "./Main.module.css";
 import Message from "../Message/Message";
 import Input from "../Input/Input";
-import axios from "axios";
 import Participants from "../Participants/Participants";
+import { StoreContext } from "../../Contexts/store";
 
 const currentUser = "user_123";
 
 const Main = (props) => {
+  const store = useContext(StoreContext);
   let content = null;
 
-  if (props.data) {
-    content = props.data.map((message) => {
+  if (store.DATA) {
+    content = store.DATA.map((message) => {
       return (
         <Message
           user={message.user}
@@ -28,7 +29,7 @@ const Main = (props) => {
     <div className={classes.Container}>
       <ol className={classes.ContentContainer}>{content}</ol>
       <Participants />
-      <Input socket={props.socket} />
+      <Input />
     </div>
   );
 };

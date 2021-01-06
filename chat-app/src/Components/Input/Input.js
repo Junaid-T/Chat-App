@@ -1,25 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import classes from "./Input.module.css";
 import uniqid from "uniqid";
+import { StoreContext } from "../../Contexts/store";
 
 const Input = (props) => {
+  const store = useContext(StoreContext);
   const handleClick = (e) => {
     let content = e.target.parentElement.querySelector("input").value;
 
-    props.socket.emit("message", {
+    store.socket.emit("message", {
       user: "user_123",
       time: 1,
       message: content,
-      room: "Test Room",
+      room: "236236",
       _id: uniqid.time(),
     });
-
     e.target.parentElement.querySelector("input").value = "";
   };
-
-  ////////////////////////////////////////////////////////////////////////////
-
-  ////////////////////////////////////////////////////////////////////////////
 
   return (
     <div className={classes.InputContainer}>
