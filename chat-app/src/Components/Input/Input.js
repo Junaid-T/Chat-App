@@ -1,18 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import classes from "./Input.module.css";
 import uniqid from "uniqid";
-import { StoreContext } from "../../Contexts/store";
+import { useSelector } from "react-redux";
 
 const Input = (props) => {
-  const store = useContext(StoreContext);
+  const activeRoom = useSelector((state) => state.activeChat);
+
   const handleClick = (e) => {
     let content = e.target.parentElement.querySelector("input").value;
 
-    store.socket.emit("message", {
+    props.socket.emit("message", {
       user: "user_123",
       time: 1,
       message: content,
-      room: "236236",
+      room: activeRoom,
       _id: uniqid.time(),
     });
     e.target.parentElement.querySelector("input").value = "";

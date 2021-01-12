@@ -5,6 +5,6 @@ const router = express.Router();
 
 // Review if this is done right.
 //router.route("/:chatID").get(chatController.getMessages); --LATER
-router.route("/").get(chatController.getMessages);
+// router.route("/").get(chatController.getMessages);
 
 module.exports = router;

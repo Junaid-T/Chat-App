@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import classes from "./Header.module.css";
-import { StoreContext } from "../../Contexts/store";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,24 +10,10 @@ import {
 } from "../../Actions/index";
 
 const Header = (props) => {
-  const store = useContext(StoreContext);
   const dispatch = useDispatch();
   const participantView = useSelector((state) => state.participantView);
   const activeChat = useSelector((state) => state.activeChat);
 
-  // const toggleView = () => {
-  //   store.setParticipantView(!store.participantView);
-  // };
-
-  // const toggleView = () => {
-  //   console.log(participantView);
-  //   dispatch(toggleParticipants());
-  // };
-
-  // const backToDashboard = () => {
-  //   store.setActiveChat(null);
-  //   store.setParticipantView(false);
-  // };
   const toggleView = () => {
     console.log(participantView);
     participantView
@@ -56,20 +41,5 @@ const Header = (props) => {
     </div>
   );
 };
-//   return (
-//     <div className={classes.Header}>
-//       <button onClick={store.activeChat ? backToDashboard : props.handleClick}>
-//         {store.activeChat ? "Dashboard" : "Sign Out"}
-//       </button>
-//       <h3>Chat Room</h3>
-//       <button
-//         className={classes.ParticipantButton}
-//         onClick={store.activeChat ? toggleView : null}
-//       >
-//         Participants
-//       </button>
-//     </div>
-//   );
-// };
 
 export default Header;

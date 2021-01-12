@@ -35,6 +35,34 @@ exports.saveToDB = async function (room, message, user, _id) {
   }
 };
 
+exports.findRooms = async function () {
+  try {
+    const db = client.db("Chat");
+    const users = db.collection("users");
+    const user = await users.find({ email: "test@test.com" }).toArray();
+    return user[0].rooms;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.getMessages = async function (rooms) {
+  try {
+    const db = client.db("Chat");
+    const allMessages = {};
+
+    for (const room of rooms) {
+      const collection = db.collection(room);
+      const docs = await collection.find({});
+      const messages = await docs.toArray();
+      allMessages[room] = messages;
+    }
+    return allMessages;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 exports.deleteMessages = async function () {
   try {
     const db = client.db("Chat");

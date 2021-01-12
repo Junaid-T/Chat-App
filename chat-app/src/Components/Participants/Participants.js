@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import classes from "./Participants.module.css";
-import { StoreContext } from "../../Contexts/store";
 import { useSelector } from "react-redux";
 
 const Participants = () => {
@@ -36,15 +35,5 @@ const Participants = () => {
     </ul>
   );
 };
-//   return (
-//     <ul
-//       className={
-//         store.participantView ? classes.ContainerShow : classes.ContainerHidden
-//       }
-//     >
-//       {Participants}
-//     </ul>
-//   );
-// };
 
 export default Participants;

@@ -5,7 +5,7 @@ const messagesReducer = (state = {}, action) => {
     case "ADD_MESSAGE":
       const chat = state[action.payload.id];
       const updatedChat = [...chat, action.payload.message];
-      return { ...state, [action.payload.id]: [updatedChat] };
+      return { ...state, [action.payload.id]: updatedChat };
     default:
       return state;
   }
