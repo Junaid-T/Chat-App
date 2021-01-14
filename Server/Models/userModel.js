@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
+//CHANGE TO WITHOUT MONGOOSE VERIFICATION
+
 const usersSchema = new mongoose.Schema({
   email: {
     type: String,

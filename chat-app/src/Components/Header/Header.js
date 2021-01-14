@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   showParticipants,
   hideParticipants,
-  activateChat,
   deactivateChat,
 } from "../../Actions/index";
 
@@ -15,7 +14,6 @@ const Header = (props) => {
   const activeChat = useSelector((state) => state.activeChat);
 
   const toggleView = () => {
-    console.log(participantView);
     participantView
       ? dispatch(hideParticipants())
       : dispatch(showParticipants());
@@ -26,6 +24,10 @@ const Header = (props) => {
     dispatch(deactivateChat());
   };
 
+  const newChat = () => {
+    props.socket.emit("newChat", "00000scas77");
+  };
+
   return (
     <div className={classes.Header}>
       <button onClick={activeChat ? backToDashboard : props.handleClick}>
@@ -33,10 +35,12 @@ const Header = (props) => {
       </button>
       <h3>Chat Room</h3>
       <button
-        className={classes.ParticipantButton}
-        onClick={activeChat ? toggleView : null}
+        className={
+          activeChat ? classes.ParticipantButton : classes.NewRoomButton
+        }
+        onClick={activeChat ? toggleView : newChat}
       >
-        Participants
+        {activeChat ? "Participants" : "New Room"}
       </button>
     </div>
   );

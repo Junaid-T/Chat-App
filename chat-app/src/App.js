@@ -8,7 +8,11 @@ import socketIOClient from "socket.io-client";
 import { useEffect } from "react";
 
 const socket = socketIOClient("http://127.0.0.1:3001", {
-  query: { rooms: ["236236", "236263", "246324"], token: "12345" },
+  query: {
+    rooms: ["236236", "236263", "246324"],
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZmMyOGM5ZDE2ZTc1NDZkNDFjNGMwNyIsImlhdCI6MTYxMDU3MDY5MCwiZXhwIjoxNjEwNTc0MjkwfQ.pov9WIZsg6aublL0OzNU8kaIzHRbmtjw5AB2NRIY2BE",
+  },
 });
 
 function App() {
@@ -26,6 +30,10 @@ function App() {
         dispatch(loadChat(room, data[room]));
       }
     });
+    socket.on("success", (data) => {
+      // NEW ROOM HAS BEEN CREATED AND USER ADDED TO IT
+      console.log(data);
+    });
 
     socket.on("Auth Error", (data) => {
       console.log(data);
@@ -34,7 +42,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header handleClick={() => dispatch(logout())} />
+      <Header socket={socket} handleClick={() => dispatch(logout())} />
       {signedIn ? (
         <Dashboard socket={socket} />
       ) : (

@@ -4,6 +4,7 @@
   width: 100%;
   margin: 0;
   padding: 0;
+  position: relative;
 }
 
 .Button {
@@ -12,7 +13,7 @@
   width: 50%;
   height: 20%;
   position: relative;
-  top: 40%;
+  top: 20%;
   border-radius: 20%;
   box-shadow: 4px 4px 4px grey;
   border: none;
@@ -20,4 +21,81 @@
 
 .Button h2 {
   font-weight: 900;
+}
+
+.LoginForm,
+.RegisterForm {
+  height: 50%;
+  width: 80%;
+  margin: auto;
+  position: relative;
+  top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  border: 2px solid white;
+}
+
+.LoginForm label {
+  position: relative;
+  left: 5%;
+  top: 5%;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 20px;
+}
+
+.LoginForm input {
+  width: 100%;
+  height: 15%;
+}
+
+.LoginForm button {
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  align-self: center;
+}
+
+.RegisterForm {
+  height: 60%;
+}
+
+.RegisterForm label {
+  position: relative;
+  left: 5%;
+  top: 2%;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 20px;
+}
+
+.RegisterForm input {
+  width: 100%;
+  height: 11%;
+}
+
+.RegisterForm button {
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  align-self: center;
+}
+
+.SwitchText {
+  font-size: 14px;
+  height: 20px;
+  width: 50%;
+  margin: auto;
+  position: relative;
+  top: 12%;
+}
+
+.ErrorMessage {
+  height: 20px;
+  width: 100%;
+  background-color: red;
 }
