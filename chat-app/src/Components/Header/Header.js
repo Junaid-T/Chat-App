@@ -12,6 +12,7 @@ const Header = (props) => {
   const dispatch = useDispatch();
   const participantView = useSelector((state) => state.participantView);
   const activeChat = useSelector((state) => state.activeChat);
+  const auth = useSelector((state) => state.auth);
 
   const toggleView = () => {
     participantView
@@ -30,13 +31,20 @@ const Header = (props) => {
 
   return (
     <div className={classes.Header}>
-      <button onClick={activeChat ? backToDashboard : props.handleClick}>
+      <button
+        style={{ visibility: auth.isAuth ? "visible" : "hidden" }}
+        onClick={activeChat ? backToDashboard : props.handleClick}
+      >
         {activeChat ? "Dashboard" : "Sign Out"}
       </button>
-      <h3>Chat Room</h3>
+      <h3>Chat App</h3>
       <button
         className={
-          activeChat ? classes.ParticipantButton : classes.NewRoomButton
+          auth.isAuth
+            ? activeChat
+              ? classes.ParticipantButton
+              : classes.NewRoomButton
+            : classes.InactiveButton
         }
         onClick={activeChat ? toggleView : newChat}
       >

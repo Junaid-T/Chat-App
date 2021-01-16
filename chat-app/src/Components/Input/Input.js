@@ -5,13 +5,14 @@ import { useSelector } from "react-redux";
 
 const Input = (props) => {
   const activeRoom = useSelector((state) => state.activeChat);
+  const auth = useSelector((state) => state.auth);
 
   const handleClick = (e) => {
     let content = e.target.parentElement.querySelector("input").value;
 
     props.socket.emit("message", {
-      user: "user_123",
-      time: 1,
+      user: auth.user,
+      time: Date.now(),
       message: content,
       room: activeRoom,
       _id: uniqid.time(),
@@ -21,11 +22,7 @@ const Input = (props) => {
 
   return (
     <div className={classes.InputContainer}>
-      <input
-        className={classes.Input}
-        type="text"
-        placeholder="Message"
-      ></input>
+      <input className={classes.Input} type="text"></input>
       <button className={classes.Submit} onClick={handleClick}>
         Send!
       </button>

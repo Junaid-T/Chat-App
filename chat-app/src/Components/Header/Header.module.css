@@ -1,7 +1,7 @@
 .Header {
-  background-color: rgb(59, 50, 50);
+  background-color: blue;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   color: white;
   height: 10%;
   align-items: center;
@@ -11,25 +11,29 @@
 .NewRoomButton,
 .Header button {
   color: white;
-  background-color: var(--secondary-color);
+  background-color: var(--button-color);
   border: none;
   height: 40%;
-  border-radius: 20%;
+  border-radius: 5px;
   outline: none;
   height: 50%;
   cursor: pointer;
-  width: 20%;
+  width: 30%;
+  border: 2px solid white;
+}
+.InactiveButton {
+  visibility: hidden;
 }
 
 .Header button:hover {
-  background-color: var(--main-color);
+  background-color: var(--button-color);
 }
 .Header button:active {
   background-color: var(--secondary-color);
 }
-.Header button:focus {
+/* .Header button:focus {
   background-color: var(--secondary-color);
-}
+} */
 
 .Header h3 {
   height: 40%;
@@ -41,19 +45,18 @@
   }
   .Header h3 {
     width: 50%;
-    height: 100%;
+    height: 90%;
     font-size: 20px;
     font-weight: 600;
     letter-spacing: 2px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 2px double white;
   }
   .Header button {
-    height: 100%;
+    height: 70%;
     width: 20%;
-    border-radius: 0%;
-    background-color: var(--main-color);
     font-size: 20px;
     font-weight: 600;
     letter-spacing: 2px;

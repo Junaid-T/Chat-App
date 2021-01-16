@@ -3,9 +3,10 @@ const initialState = {
   isAuth: false,
   isLoading: false,
   user: null,
+  hasError: false,
 };
 
-const NEWauthReducer = (state = false, action) => {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case "USER_LOADING":
       return {
@@ -17,8 +18,9 @@ const NEWauthReducer = (state = false, action) => {
       return {
         ...state,
         isLoading: false,
-        user: action.payload,
+        user: action.payload.user,
         isAuth: true,
+        hasError: false,
       };
     case "LOGOUT_SUCCESS":
       return {
@@ -36,6 +38,7 @@ const NEWauthReducer = (state = false, action) => {
         isAuth: false,
         token: null,
         user: null,
+        hasError: true,
       };
     default:
       return state;
@@ -44,14 +47,14 @@ const NEWauthReducer = (state = false, action) => {
 
 /////////////////////////////////////////////
 /////////////////////////////////////////////
-const authReducer = (state = false, action) => {
-  switch (action.type) {
-    case "LOGIN":
-      return true;
-    case "LOGOUT":
-      return false;
-    default:
-      return state;
-  }
-};
+// const authReducer = (state = false, action) => {
+//   switch (action.type) {
+//     case "LOGIN":
+//       return true;
+//     case "LOGOUT":
+//       return false;
+//     default:
+//       return state;
+//   }
+// };
 export default authReducer;

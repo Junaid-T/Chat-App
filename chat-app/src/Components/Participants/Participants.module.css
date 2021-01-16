@@ -1,9 +1,7 @@
 .ContainerHidden {
-  background-color: teal;
+  background-color: var(--main-color);
   height: 90%;
   width: 100%;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +13,7 @@
 }
 
 .ContainerShow {
-  background-color: teal;
+  background-color: var(--button-color);
   height: 90%;
   width: 100%;
   margin: 0;
@@ -33,7 +31,11 @@
 .Participant {
   height: 10%;
   width: 80%;
-  background-color: red;
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 2px;
 }
 
 .ParticipantHeader {
@@ -43,11 +45,11 @@
 @media only screen and (min-width: 700px) {
   .ContainerHidden,
   .ContainerShow {
-    width: 25%;
-    left: 75%;
-    bottom: 5%;
-    height: 95%;
-    background-color: yellow;
+    width: 40%;
+    left: 60%;
+    bottom: 0%;
+    height: 100%;
+    background-color: var(--button-color);
   }
   .Participant {
     margin-left: auto;

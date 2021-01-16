@@ -7,7 +7,20 @@ exports.registerUser = async (req, res, next) => {
     // unique email validation done by express - use joi to check password
 
     // VERIFICATION MIDDLEWARE NEEDED HERE
-    const newUser = await User.createUser(req.body.email, req.body.password);
+    const newUser = await User.createUser(
+      req.body.email,
+      req.body.password,
+      req.body.confirmPassword
+    );
+    if (!newUser) {
+      res.status(400).json({
+        status: "fail",
+        data: {
+          message: "Validation error",
+        },
+      });
+      return;
+    }
 
     const token = await jwt.sign({ id: newUser._id }, process.env.TOKEN, {
       expiresIn: process.env.TOKEN_EXPIRY,
@@ -23,9 +36,9 @@ exports.registerUser = async (req, res, next) => {
         },
       });
   } catch (err) {
-    res.status(400).json({
+    res.status(500).json({
       status: "fail",
-      data: err,
+      data: "Unexpected error, please try again later",
     });
   }
 };
@@ -33,11 +46,13 @@ exports.registerUser = async (req, res, next) => {
 exports.loginUser = async (req, res, next) => {
   try {
     const findUser = await User.findUser(req.body.email);
-    const rooms = findUser.rooms;
+    //const rooms = findUser.rooms;
+
     // const validPassword = await bcrypt.compare(
     //   req.body.password,
     //   findUser.password
     // );
+    // console.log(validPassword);
     const validPassword = true;
     if (validPassword) {
       const token = await jwt.sign({ id: findUser._id }, process.env.TOKEN, {
@@ -53,15 +68,15 @@ exports.loginUser = async (req, res, next) => {
           },
         });
     } else {
-      res.status(400).json({
+      res.status(401).json({
         status: "fail",
         data: "Email or password is incorrect",
       });
     }
   } catch (err) {
-    res.status(400).json({
+    res.status(500).json({
       status: "fail",
-      data: err,
+      data: "Unexpected error, please try again later",
     });
   }
 };

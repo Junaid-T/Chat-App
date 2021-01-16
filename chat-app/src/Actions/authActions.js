@@ -4,10 +4,12 @@ export const userLoading = () => {
   };
 };
 
-export const loginSuccess = () => {
+export const loginSuccess = (user) => {
   return {
     type: "LOGIN_SUCCESS",
-    payload: {},
+    payload: {
+      user,
+    },
   };
 };
 

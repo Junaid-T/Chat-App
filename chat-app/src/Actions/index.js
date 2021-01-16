@@ -24,17 +24,17 @@ export const deactivateChat = () => {
   };
 };
 
-export const login = () => {
-  return {
-    type: "LOGIN",
-  };
-};
+// export const login = () => {
+//   return {
+//     type: "LOGIN",
+//   };
+// };
 
-export const logout = () => {
-  return {
-    type: "LOGOUT",
-  };
-};
+// export const logout = () => {
+//   return {
+//     type: "LOGOUT",
+//   };
+// };
 
 export const loadChat = (id, messages) => {
   return {

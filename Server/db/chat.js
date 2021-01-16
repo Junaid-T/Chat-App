@@ -20,7 +20,7 @@ exports.createChat = async function (room) {
     await db.createCollection(room);
     return room;
   } catch (err) {
-    console.log(err);
+    throw new Error();
   }
 };
 

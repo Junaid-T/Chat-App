@@ -5,10 +5,8 @@ module.exports = verify = async function (token) {
     const verified = await jwt.verify(token, process.env.TOKEN);
     return verified.id;
   } catch (err) {
-    console.log("Invalid Token");
+    throw new Error("Invalid Token");
   }
-
-  next();
 };
 // module.exports = verify = function (req, res, next) {
 //   const token = req.header("token");

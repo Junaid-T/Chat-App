@@ -13,12 +13,12 @@ ol {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, Lato, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(199, 164, 164);
+  background-color: var(--main-color);
 }
 
 code {
@@ -27,8 +27,13 @@ code {
 }
 
 :root {
-  --main-color: orange;
-  --secondary-color: rgba(236, 172, 54, 0.829);
+  --main-color: rgba(255, 255, 255, 0.856);
+  --secondary-color: rgba(32, 39, 134, 0.479);
+  --button-color: rgba(116, 120, 180, 0.829);
+}
 
-  --background-color: ;
+@media only screen and (min-width: 700px) {
+  body {
+    background-color: rgb(102, 109, 102);
+  }
 }

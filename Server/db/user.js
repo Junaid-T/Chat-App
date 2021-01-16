@@ -1,21 +1,51 @@
 const client = require("./dbConnect");
 const ObjectID = require("mongodb").ObjectID;
+const validate = require("validate");
+const bcrypt = require("bcrypt");
 
-exports.createUser = async function (email, password) {
+const userSchema = new validate({
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+    length: { min: 8 },
+  },
+  confirmPassword: {
+    type: String,
+    required: true,
+    length: { min: 8 },
+  },
+});
+
+exports.createUser = async function (email, password, confirmPassword) {
   try {
-    const db = client.db("Chat");
-    const users = db.collection("users");
-    const user = users.insertOne({
+    const errors = await userSchema.validate({
       email: email,
       password: password,
+      confirmPassword: confirmPassword,
+    });
+    if (errors.length > 1) {
+      return false;
+    }
+    const db = client.db("Chat");
+    const users = db.collection("users");
+
+    const hashedPassword = await bcrypt.hash(password, 12);
+    const user = users.insertOne({
+      email: email,
+      password: hashedPassword,
       rooms: [],
     });
     return user;
   } catch (err) {
-    console.log(err);
+    throw new Error(err);
   }
 };
 
+// Used for finding the user for authentification
 exports.findUser = async function (email) {
   try {
     const db = client.db("Chat");
@@ -31,6 +61,7 @@ exports.findUser = async function (email) {
   }
 };
 
+// This is used to find the user rooms and chats - token payload has the id which is why this is needed.
 exports.findUserByID = async function (id) {
   try {
     const db = client.db("Chat");
@@ -63,9 +94,24 @@ exports.joinChat = async function (room) {
   try {
     const db = client.db("Chat");
     const users = db.collection("users");
-    const user = await users.find({ email: "test@test.com" }).toArray();
-    console.log(user[0]);
-    const newRooms = [...user[0].rooms, room];
+    const user = await users.findOne({ email: "test@test.com" });
+    const newRooms = [...user.rooms, room];
+    await users.updateOne(
+      { email: "test@test.com" },
+      { $set: { rooms: newRooms } }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.leaveChat = async function (room) {
+  try {
+    const db = client.db("Chat");
+    const users = db.collection("users");
+    const user = await users.findOne({ email: "test@test.com" });
+    const target = user.rooms.indexOf(room);
+    const newRooms = user.rooms.splice(target, 1);
     await users.updateOne(
       { email: "test@test.com" },
       { $set: { rooms: newRooms } }

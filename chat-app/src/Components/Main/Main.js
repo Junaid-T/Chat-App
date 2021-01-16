@@ -9,6 +9,8 @@ const currentUser = "user_123";
 
 const Main = (props) => {
   let content = null;
+  const auth = useSelector((state) => state.auth);
+  console.log(auth);
 
   let DATA = useSelector((state) => state.messages);
   const activeRoom = useSelector((state) => state.activeChat);
@@ -25,7 +27,7 @@ const Main = (props) => {
             user={message.user}
             time={message.time}
             message={message.message}
-            sender={message.user === currentUser}
+            sender={auth.user === message.user}
             key={message._id}
           />
         );

@@ -3,6 +3,7 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  background-color: var(--main-color);
 }
 
 @media only screen and (min-width: 700px) {
@@ -10,5 +11,8 @@
     height: 600px;
     width: 700px;
     margin: 2% auto;
+    border-left: 4px solid var(--button-color);
+    border-right: 4px solid var(--button-color);
+    border-bottom: 4px solid var(--button-color);
   }
 }
