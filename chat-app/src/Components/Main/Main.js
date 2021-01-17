@@ -16,12 +16,13 @@ const Main = (props) => {
   const activeRoom = useSelector((state) => state.activeChat);
   console.log(DATA);
   if (DATA) {
-    if (DATA[activeRoom] === undefined) {
+    if (DATA[activeRoom].length === 1) {
       content = "Lets kick start this chat with a message";
     } else {
       // CRASHED IF CLICKED TOO FAST
 
-      content = DATA[activeRoom].map((message) => {
+      content = DATA[activeRoom].map((message, i) => {
+        if (i === 0) return null;
         return (
           <Message
             user={message.user}

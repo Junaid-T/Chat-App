@@ -90,16 +90,14 @@ exports.getMessages = async function (rooms) {
   }
 };
 
-exports.joinChat = async function (room) {
+exports.joinChat = async function (ID, room) {
   try {
     const db = client.db("Chat");
     const users = db.collection("users");
-    const user = await users.findOne({ email: "test@test.com" });
+    const user = await users.findOne({ _id: ObjectID(ID) });
+    // const user = await users.findOne({ email: "test@test.com" });
     const newRooms = [...user.rooms, room];
-    await users.updateOne(
-      { email: "test@test.com" },
-      { $set: { rooms: newRooms } }
-    );
+    await users.updateOne({ _id: ObjectID(ID) }, { $set: { rooms: newRooms } });
   } catch (err) {
     console.log(err);
   }

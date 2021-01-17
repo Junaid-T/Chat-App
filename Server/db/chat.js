@@ -14,11 +14,14 @@ exports.saveToDB = async function (room, message, user, _id) {
   }
 };
 
-exports.createChat = async function (room) {
+exports.createChat = async function (id, name) {
   try {
     const db = client.db("Chat");
-    await db.createCollection(room);
-    return room;
+    // const collection = db.collection(id);
+    const collection = await db.createCollection(id);
+    await collection.insertOne({ name: name });
+    //await db.createCollection(id);
+    return id;
   } catch (err) {
     throw new Error();
   }

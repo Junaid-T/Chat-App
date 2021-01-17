@@ -2,13 +2,15 @@ import React from "react";
 import classes from "./Header.module.css";
 
 import { useDispatch, useSelector } from "react-redux";
+import { deactivateChat } from "../../Actions/activeChatActions";
+import { showNewChatView } from "../../Actions/newChatAction";
+import { logoutSuccess } from "../../Actions/authActions";
 import {
   showParticipants,
   hideParticipants,
-  deactivateChat,
-} from "../../Actions/index";
+} from "../../Actions/participantActions";
 
-const Header = (props) => {
+const Header = () => {
   const dispatch = useDispatch();
   const participantView = useSelector((state) => state.participantView);
   const activeChat = useSelector((state) => state.activeChat);
@@ -25,15 +27,20 @@ const Header = (props) => {
     dispatch(deactivateChat());
   };
 
-  const newChat = () => {
-    props.socket.emit("newChat", "00000scas77");
+  const newChatView = () => {
+    dispatch(showNewChatView());
+  };
+
+  const signOut = () => {
+    localStorage.removeItem("token");
+    dispatch(logoutSuccess());
   };
 
   return (
     <div className={classes.Header}>
       <button
         style={{ visibility: auth.isAuth ? "visible" : "hidden" }}
-        onClick={activeChat ? backToDashboard : props.handleClick}
+        onClick={activeChat ? backToDashboard : signOut}
       >
         {activeChat ? "Dashboard" : "Sign Out"}
       </button>
@@ -46,7 +53,7 @@ const Header = (props) => {
               : classes.NewRoomButton
             : classes.InactiveButton
         }
-        onClick={activeChat ? toggleView : newChat}
+        onClick={activeChat ? toggleView : newChatView}
       >
         {activeChat ? "Participants" : "New Room"}
       </button>

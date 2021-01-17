@@ -17,10 +17,6 @@ io.use(async function (socket, next) {
       socket.verifiedID = await verifyToken(socket.handshake.query.token);
       next();
     }
-    //else {
-    //   socket.emit("Auth Error", "Please enter a valid token");
-    //   next("err");
-    // }
   } catch (err) {
     console.log("Rejected");
     socket.emit("Auth Error", "Please provide a valid token");
@@ -47,11 +43,14 @@ io.use(async function (socket, next) {
   // Add room to user and add room to users list of rooms
   socket.on("newChat", async (room) => {
     try {
-      const created = await chats.createChat(room);
+      const created = await chats.createChat(room.id, room.name);
       if (created) {
-        await users.joinChat(room);
-        socket.join(room);
-        socket.emit("success", "User has created a new room");
+        await users.joinChat(socket.verifiedID, room.id);
+        socket.join(room.id);
+        socket.emit("createSuccess", {
+          id: room.id,
+          name: room.name,
+        });
       }
     } catch (err) {
       socket.emit("Error", "Could not create room");
@@ -61,7 +60,7 @@ io.use(async function (socket, next) {
   //   Add room to user and add room to users list of rooms
   socket.on("joinChat", async (room) => {
     try {
-      await users.joinChat(room);
+      await users.joinChat(socket.verifiedID, room);
       socket.join(room);
       socket.emit("success", "User has joined a new room");
     } catch (err) {

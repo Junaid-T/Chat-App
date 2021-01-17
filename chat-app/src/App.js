@@ -3,7 +3,7 @@ import Header from "./Components/Header/Header";
 import SignIn from "./Components/Sign In/Sign-In";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import { useSelector, useDispatch } from "react-redux";
-import { loadChat, addToChat } from "./Actions/index";
+import { loadChat, addToChat } from "./Actions/messageActions";
 import { logoutSuccess, loginSuccess } from "./Actions/authActions";
 import socketIOClient from "socket.io-client";
 import { useEffect } from "react";
@@ -26,14 +26,14 @@ function App() {
 
     socket.on("user", (data) => {
       dispatch(loginSuccess(data.user));
-      console.log(data);
       for (const room in data.messages) {
         dispatch(loadChat(room, data.messages[room]));
       }
     });
 
-    socket.on("success", (data) => {
+    socket.on("createSuccess", (data) => {
       // NEW ROOM HAS BEEN CREATED AND USER ADDED TO IT
+      dispatch(loadChat(data.id, [{ name: data.name }]));
       console.log(data);
     });
 
@@ -48,7 +48,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header socket={socket} handleClick={() => dispatch(logoutSuccess())} />
+      <Header socket={socket} />
       {auth.isAuth ? <Dashboard socket={socket} /> : <SignIn />}
     </div>
   );

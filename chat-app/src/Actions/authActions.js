@@ -13,10 +13,12 @@ export const loginSuccess = (user) => {
   };
 };
 
-export const registerSuccess = () => {
+export const registerSuccess = (user) => {
   return {
     type: "REGISTER_SUCCESS",
-    payload: {},
+    payload: {
+      user,
+    },
   };
 };
 
