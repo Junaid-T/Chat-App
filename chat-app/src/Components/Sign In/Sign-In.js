@@ -10,6 +10,7 @@ const SignIn = (props) => {
   const dispatch = useDispatch();
   const [loginMode, setLoginMode] = useState(true);
 
+  const [name, SetName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
@@ -32,14 +33,16 @@ const SignIn = (props) => {
     }
   };
 
-  const regReq = async (email, password, confirmPassword) => {
+  const regReq = async (name, email, password, confirmPassword) => {
     if (password !== confirmPassword) return;
     try {
       const res = await axios.post(
         "http://127.0.0.1:3001/api/v1/user/register",
         {
+          name: name,
           email: email,
           password: password,
+          confirmPassword: confirmPassword,
         }
       );
       await localStorage.setItem("token", res.headers.token);
@@ -81,6 +84,12 @@ const SignIn = (props) => {
 
   const registerForm = (
     <form className={classes.RegisterForm}>
+      <label htmlFor="name">Name</label>
+      <input
+        onChange={(e) => SetName(e.target.value)}
+        id="name"
+        type="text"
+      ></input>
       <label htmlFor="email">Email</label>
       <input
         onChange={(e) => setEmail(e.target.value)}
@@ -120,7 +129,7 @@ const SignIn = (props) => {
 
       <div
         className={classes.Submit}
-        onClick={() => regReq(email, password, confirmPassword)}
+        onClick={() => regReq(name, email, password, confirmPassword)}
       >
         Sign Up
       </div>

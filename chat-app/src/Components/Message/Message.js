@@ -12,7 +12,7 @@ const Message = (props) => {
         }
       >
         <div className={classes.Name}>
-          {props.sender === true ? null : props.user}
+          {props.sender === true ? null : props.name}
         </div>
         <div className={classes.Message}>{props.message}</div>
         <div className={classes.Time}>{props.time}</div>

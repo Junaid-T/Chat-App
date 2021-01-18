@@ -1,6 +1,6 @@
 const client = require("./dbConnect");
 
-exports.saveToDB = async function (room, message, user, _id) {
+exports.saveToDB = async function (room, message, user, _id, name, time) {
   try {
     const db = client.db("Chat");
     const TEST = db.collection(`${room}`);
@@ -8,6 +8,8 @@ exports.saveToDB = async function (room, message, user, _id) {
       message: message,
       user: user,
       _id: _id,
+      name: name,
+      time: time,
     });
   } catch (err) {
     console.log(err);

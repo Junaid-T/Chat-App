@@ -8,6 +8,7 @@ exports.registerUser = async (req, res, next) => {
 
     // VERIFICATION MIDDLEWARE NEEDED HERE
     const newUser = await User.createUser(
+      "name",
       req.body.email,
       req.body.password,
       req.body.confirmPassword
@@ -46,14 +47,13 @@ exports.registerUser = async (req, res, next) => {
 exports.loginUser = async (req, res, next) => {
   try {
     const findUser = await User.findUser(req.body.email);
-    //const rooms = findUser.rooms;
 
-    // const validPassword = await bcrypt.compare(
-    //   req.body.password,
-    //   findUser.password
-    // );
-    // console.log(validPassword);
-    const validPassword = true;
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      findUser.password
+    );
+    console.log(validPassword);
+    // const validPassword = true;
     if (validPassword) {
       const token = await jwt.sign({ id: findUser._id }, process.env.TOKEN, {
         expiresIn: process.env.TOKEN_EXPIRY,

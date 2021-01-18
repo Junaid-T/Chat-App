@@ -20,7 +20,7 @@ const userSchema = new validate({
   },
 });
 
-exports.createUser = async function (email, password, confirmPassword) {
+exports.createUser = async function (name, email, password, confirmPassword) {
   try {
     const errors = await userSchema.validate({
       email: email,
@@ -35,6 +35,7 @@ exports.createUser = async function (email, password, confirmPassword) {
 
     const hashedPassword = await bcrypt.hash(password, 12);
     const user = users.insertOne({
+      name: name,
       email: email,
       password: hashedPassword,
       rooms: [],

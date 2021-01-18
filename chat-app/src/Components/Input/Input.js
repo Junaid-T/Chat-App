@@ -12,7 +12,6 @@ const Input = (props) => {
 
     props.socket.emit("message", {
       user: auth.user,
-      time: Date.now(),
       message: content,
       room: activeRoom,
       _id: uniqid.time(),

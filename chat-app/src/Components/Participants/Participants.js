@@ -2,33 +2,29 @@ import React from "react";
 import classes from "./Participants.module.css";
 import { useSelector } from "react-redux";
 
+import uniqid from "uniqid";
+
 const Participants = () => {
   //const store = useContext(StoreContext);
   const participantView = useSelector((state) => state.participantView);
+  const activeChat = useSelector((state) => state.activeChat);
 
-  const TEMP = [
-    {
-      id: "user_123",
-      name: "A",
-    },
-    {
-      id: "user_234",
-      name: "B",
-    },
-  ];
+  const TEMP = participantView.participants[activeChat];
 
-  const Participants = TEMP.map((Participants) => {
-    return (
-      <li className={classes.Participant} key={Participants.id}>
-        {Participants.name}
-      </li>
-    );
-  });
-
+  let Participants = [];
+  if (TEMP) {
+    Participants = TEMP.map((Participants) => {
+      return (
+        <li className={classes.Participant} key={uniqid.time()}>
+          {Participants}
+        </li>
+      );
+    });
+  }
   return (
     <ul
       className={
-        participantView ? classes.ContainerShow : classes.ContainerHidden
+        participantView.view ? classes.ContainerShow : classes.ContainerHidden
       }
     >
       {Participants}

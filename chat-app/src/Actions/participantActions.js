@@ -8,3 +8,21 @@ export const hideParticipants = () => {
     type: "HIDE",
   };
 };
+export const addParticipant = (name, chat) => {
+  return {
+    type: "ADD",
+    payload: {
+      name: name,
+      chat: chat,
+    },
+  };
+};
+export const removeParticipants = (name, chat) => {
+  return {
+    type: "REMOVE",
+    payload: {
+      name: name,
+      chat: chat,
+    },
+  };
+};

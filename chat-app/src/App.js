@@ -4,7 +4,11 @@ import SignIn from "./Components/Sign In/Sign-In";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import { useSelector, useDispatch } from "react-redux";
 import { loadChat, addToChat } from "./Actions/messageActions";
-import { logoutSuccess, loginSuccess } from "./Actions/authActions";
+import { loginSuccess } from "./Actions/authActions";
+import {
+  addParticipant,
+  removeParticipants,
+} from "./Actions/participantActions";
 import socketIOClient from "socket.io-client";
 import { useEffect } from "react";
 
@@ -34,6 +38,16 @@ function App() {
     socket.on("createSuccess", (data) => {
       // NEW ROOM HAS BEEN CREATED AND USER ADDED TO IT
       dispatch(loadChat(data.id, [{ name: data.name }]));
+      console.log(data);
+    });
+
+    socket.on("userJoined", (data) => {
+      dispatch(addParticipant(data.name, data.chat));
+      console.log(data);
+    });
+
+    socket.on("userLeft", (data) => {
+      dispatch(removeParticipants(data.name, data.chat));
       console.log(data);
     });
 

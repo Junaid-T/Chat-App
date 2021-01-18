@@ -10,7 +10,7 @@ import {
   hideParticipants,
 } from "../../Actions/participantActions";
 
-const Header = () => {
+const Header = (props) => {
   const dispatch = useDispatch();
   const participantView = useSelector((state) => state.participantView);
   const activeChat = useSelector((state) => state.activeChat);
@@ -34,6 +34,7 @@ const Header = () => {
   const signOut = () => {
     localStorage.removeItem("token");
     dispatch(logoutSuccess());
+    props.socket.emit("userLeft");
   };
 
   return (
