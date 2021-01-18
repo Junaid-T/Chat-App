@@ -1,0 +1,53 @@
+.MessageContainer {
+  width: 100%;
+  margin: 2% auto 0;
+  min-height: 15%;
+  overflow: hidden;
+}
+
+.MessageSender {
+  width: 90%;
+  background-color: rgba(0, 0, 255, 0.45);
+  color: black;
+  float: right;
+  height: 98%;
+  position: relative;
+  padding-left: 1%;
+}
+
+.MessageReciever {
+  width: 90%;
+  background-color: rgba(0, 255, 0, 0.45);
+  color: black;
+  float: left;
+  height: 98%;
+  position: relative;
+  padding-left: 1%;
+}
+
+.Name {
+  float: left;
+  font-size: small;
+}
+.Message {
+  width: 100%;
+  float: left;
+  text-align: left;
+  font-size: large;
+  position: relative;
+  top: 2%;
+}
+
+.Time {
+  font-size: small;
+  float: left;
+  position: absolute;
+  top: 75%;
+}
+
+@media only screen and (min-width: 500px) {
+  .MessageReciever,
+  .MessageSender {
+    width: 90%;
+  }
+}

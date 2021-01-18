@@ -1,0 +1,59 @@
+.ContainerHidden {
+  background-color: var(--main-color);
+  height: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 100%;
+  bottom: 10%;
+  z-index: 10;
+  transition: all 1s;
+}
+
+.ContainerShow {
+  background-color: var(--button-color);
+  height: 90%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  bottom: 10%;
+  z-index: 10;
+  transition: all 1s;
+}
+
+.Participant {
+  height: 10%;
+  width: 80%;
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.ParticipantHeader {
+  display: none;
+}
+
+@media only screen and (min-width: 700px) {
+  .ContainerHidden,
+  .ContainerShow {
+    width: 40%;
+    left: 60%;
+    bottom: 0%;
+    height: 100%;
+    background-color: var(--button-color);
+  }
+  .Participant {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+  }
+}

@@ -1,0 +1,29 @@
+.Container {
+  height: 90%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.ContentContainer {
+  height: 90%;
+  width: 100%;
+  overflow: scroll;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+}
+
+.ContentContainer::-webkit-scrollbar {
+  display: none;
+}
+
+@media only screen and (min-width: 700px) {
+  .ContentContainer {
+    width: 60%;
+    height: 80%;
+    padding: 2%;
+  }
+}

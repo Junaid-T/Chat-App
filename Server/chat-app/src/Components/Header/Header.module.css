@@ -1,0 +1,67 @@
+.Header {
+  background-color: blue;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  height: 10%;
+  align-items: center;
+  padding: 0 2%;
+}
+
+.NewRoomButton,
+.Header button {
+  color: white;
+  background-color: var(--button-color);
+  border: none;
+  height: 40%;
+  border-radius: 5px;
+  outline: none;
+  height: 50%;
+  cursor: pointer;
+  width: 30%;
+  border: 2px solid white;
+}
+.InactiveButton {
+  visibility: hidden;
+}
+
+.Header button:hover {
+  background-color: var(--button-color);
+}
+.Header button:active {
+  background-color: var(--secondary-color);
+}
+/* .Header button:focus {
+  background-color: var(--secondary-color);
+} */
+
+.Header h3 {
+  height: 40%;
+}
+
+@media only screen and (min-width: 700px) {
+  .Header {
+    justify-content: space-between;
+  }
+  .Header h3 {
+    width: 50%;
+    height: 90%;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px double white;
+  }
+  .Header button {
+    height: 70%;
+    width: 20%;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+  .ParticipantButton {
+    visibility: hidden;
+  }
+}

@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix chat-app && npm run build --prefix chat-app"
   },
   "author": "Junaid",
   "license": "ISC",
