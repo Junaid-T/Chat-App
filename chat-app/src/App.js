@@ -23,6 +23,7 @@ function App() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
+  // Set up all the socket events
   useEffect(() => {
     socket.on("message", (data) => {
       dispatch(addToChat(data.room, data));

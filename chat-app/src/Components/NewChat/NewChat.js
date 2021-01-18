@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import classes from "./NewChat.module.css";
 import Modal from "../Modal/Modal";
 import uniqid from "uniqid";
@@ -9,7 +8,7 @@ const NewChat = (props) => {
 
   const createNew = () => {
     if (!newName) return;
-    console.log(newName);
+
     props.socket.emit("newChat", {
       id: uniqid.time(),
       name: newName,

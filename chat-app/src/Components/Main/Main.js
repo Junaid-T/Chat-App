@@ -9,6 +9,7 @@ const Main = (props) => {
   let content = null;
   const auth = useSelector((state) => state.auth);
 
+  // Retrieves current chat messages and displays them, each message is a message componant
   let data = useSelector((state) => state.messages);
   const activeRoom = useSelector((state) => state.activeChat);
   if (data) {

@@ -4,9 +4,6 @@ const jwt = require("jsonwebtoken");
 
 exports.registerUser = async (req, res, next) => {
   try {
-    // unique email validation done by express - use joi to check password
-
-    // VERIFICATION MIDDLEWARE NEEDED HERE
     const newUser = await User.createUser(
       "name",
       req.body.email,

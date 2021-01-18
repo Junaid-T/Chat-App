@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import classes from "./Dashboard.module.css";
 import Main from "../Main/Main";
 import NewChat from "../NewChat/NewChat";

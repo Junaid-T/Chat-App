@@ -16,7 +16,6 @@ const SignIn = (props) => {
   const [confirmPassword, setConfirmPassword] = useState(null);
 
   const loginReq = async (email, password) => {
-    //dispatch(authActions.userLoading());
     try {
       const res = await axios.post("http://127.0.0.1:3001/api/v1/user/login", {
         email: email,
@@ -26,7 +25,7 @@ const SignIn = (props) => {
         throw new Error();
       }
       await localStorage.setItem("token", res.headers.token);
-      //dispatch(authActions.loginSuccess());
+
       window.location.reload();
     } catch (err) {
       dispatch(authActions.loginFail());

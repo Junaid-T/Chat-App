@@ -1,6 +1,5 @@
 import React from "react";
 import classes from "./Header.module.css";
-
 import { useDispatch, useSelector } from "react-redux";
 import { deactivateChat } from "../../Actions/activeChatActions";
 import { showNewChatView } from "../../Actions/newChatAction";
